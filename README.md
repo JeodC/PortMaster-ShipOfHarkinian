@@ -5,6 +5,9 @@ for this port, so settings must be manually altered in `shipofharkinian.json` an
 ## Graphics Adjustments
 In the `shipofharkinian.json` file there is a setting `"gInternalResolution": 0.5,`. If not using texture packs, change this to `"gInternalResolution": 1.0,` or higher.
 
+## Preset Adjustments
+A full list of presets can be viewed at the ShipWright Github repository, inside the [presets.h file](https://github.com/HarbourMasters/Shipwright/blob/fd7dfd8b6f557909c84b88e35df37bc27673fa1e/soh/soh/Enhancements/presets.h). You can create entries in your `shipofharkinian.json` file to adjust these presets. Keep in mind the json is in alphabetical order.
+
 ## Default Gameplay Controls
 The port uses SDL controller mapping. GPToKeyB is utilized only to allow hotkey exiting.
 
