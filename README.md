@@ -6,7 +6,7 @@ for this port, so settings must be manually altered in `shipofharkinian.json` an
 In the `shipofharkinian.json` file there is a setting `"gInternalResolution": 0.5,`. If not using texture packs, change this to `"gInternalResolution": 1.0,` or higher.
 
 ## Default Gameplay Controls
-The port uses SDL controller mapping.
+The port uses SDL controller mapping. GPToKeyB is utilized only to allow hotkey exiting.
 
 ## Thanks
 Nintendo for the game  
