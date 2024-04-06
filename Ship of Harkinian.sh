@@ -44,6 +44,8 @@ apply_settings() {
         enhanced)
             cp "presets/enhanced.json" "shipofharkinian.json"
             ;;
+        custom)
+            ;;
         *)
             cp "presets/default.json" "shipofharkinian.json"
             ;;

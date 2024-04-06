@@ -6,6 +6,7 @@
 		"gAuthenticLogo": 0,
 		"gBetterOwl": 1,
 		"gBombchusOOB": 1,
+		"gControlNav": 1,
         "gControllers": {
             "AxisDirectionMappings": {
                 "P0-S0-D0-KB30": {

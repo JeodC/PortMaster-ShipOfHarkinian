@@ -10,6 +10,7 @@
 		"gBetterOwl": 1,
 		"gBombchusOOB": 1,
 		"gClimbSpeed": 3,
+		"gControlNav": 1,
         "gControllers": {
             "AxisDirectionMappings": {
                 "P0-S0-D0-KB30": {

@@ -3,19 +3,19 @@ Follow the guide at the [Ship of Harkinian website](https://www.shipofharkinian.
 for this port, so settings must be manually altered in `shipofharkinian.json` and `imgui.ini`; randomizer seeds must also be generated from a PC.
 
 ## Graphics Adjustments
-You can modify `config.ini` to toggle common settings including built-in presets `default, vanilla plus, enhanced`.
+You can modify `config.ini` to toggle common settings including built-in presets: `default, vanilla plus, enhanced, custom`.
 
 ## Further Adjustments
-A full list of settings can be viewed at the ShipWright Github repository, inside the [presets.h file](https://github.com/HarbourMasters/Shipwright/blob/fd7dfd8b6f557909c84b88e35df37bc27673fa1e/soh/soh/Enhancements/presets.h). You can create entries in your `preset/preset.json` file to adjust these presets. Keep in mind the json is in alphabetical order.
+There is a `gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north button, press R, then press the north button again to access the menu bar navigation.
 
 ## Default Gameplay Controls
-The port uses SDL controller mapping. There is a `gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north button, press R, then press the north button again to access the menu bar navigation.
+The port uses SDL controller mapping.
 
 ## Thanks
 Nintendo for the game  
 HarbourMasters for the native pc port  
 fpasteau for the initial build  
-Bluedawn007 for the cover art  
+BlueDawn007 for the cover art  
 Testers and Devs from the PortMaster Discord  
 
 

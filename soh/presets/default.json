@@ -2,6 +2,7 @@
     "CVars": {
 		"gAltAssets": 0,
 		"gAuthenticLogo": 0,
+		"gControlNav": 1,
         "gControllers": {
             "AxisDirectionMappings": {
                 "P0-S0-D0-KB30": {
