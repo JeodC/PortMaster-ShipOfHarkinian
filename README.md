@@ -1,5 +1,5 @@
 ## Installation
-Follow the guide at the [ShipofHarkinian website](https://www.shipofharkinian.com/setup-guide) for your desired platform to create your oot.otr and/or oot-mq.otr files. Once created put in the `ports/soh` folder. Texture pack files can be added to the `ports/soh/mods` folder. The menu bar cannot be used
+Follow the guide at the [Ship of Harkinian website](https://www.shipofharkinian.com/setup-guide) for your desired platform to create your oot.otr and/or oot-mq.otr files. Once created put in the `ports/soh` folder. Texture pack files can be added to the `ports/soh/mods` folder. The menu bar cannot be used
 for this port, so settings must be manually altered in `shipofharkinian.json` and `imgui.ini`; randomizer seeds must also be generated from a PC.
 
 ## Graphics Adjustments
