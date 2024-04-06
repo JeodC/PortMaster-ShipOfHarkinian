@@ -298,6 +298,7 @@
 		"gFixDungeonMinimapIcon": 1,
 		"gGravediggingTourFix": 1,
 		"gHoverFishing": 1,
+		"gImGuiScale": 2,
 		"gInjectItemCounts": 1,
 		"gInternalResolution": 1.0,
 		"gInterpolationFPS": 60,

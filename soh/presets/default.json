@@ -277,6 +277,7 @@
 		"gDisableLOD": 0,
 		"gDisableDrawDistance": 0,
 		"gDisableKokiriDrawDistance": 0,
+		"gImGuiScale": 2,
 		"gInternalResolution": 1.0,
 		"gInterpolationFPS": 60,
 		"gRememberSaveLocation": 0,

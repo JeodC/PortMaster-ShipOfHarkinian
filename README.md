@@ -8,6 +8,8 @@ You can modify `config.ini` to toggle common settings including built-in presets
 ## Further Adjustments
 There is a `gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north button, press R, then press the north button again to access the menu bar navigation.
 
+The GUI may be too large or small. Navigate to Settings->Graphics->IMGUI Menu Scale to change it.
+
 ## Default Gameplay Controls
 The port uses SDL controller mapping.
 
