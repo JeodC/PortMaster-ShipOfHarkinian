@@ -77,7 +77,7 @@ apply_settings > settings.log 2>&1  # Redirect output to settings.log
 
 # Run the game
 echo "Loading, please wait... (might take a while!)" > /dev/tty0
-$GPTOKEYB "soh.elf" xbox360 & 
+$GPTOKEYB "soh.elf" -c "soh.gptk" & 
 ./soh.elf
 $ESUDO systemctl restart oga_events & 
 printf "\033c" >> /dev/tty1
