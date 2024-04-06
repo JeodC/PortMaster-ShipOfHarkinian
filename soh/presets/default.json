@@ -229,7 +229,7 @@
                 "Blue": {
                     "DeviceMappingClass": "LUSDeviceIndexToSDLDeviceIndexMapping",
                     "LUSDeviceIndex": 0,
-                    "SDLControllerName": "GO-Super Controller",
+                    "SDLControllerName": "GO-Super Gamepad",
                     "SDLDeviceIndex": 0,
                     "SDLJoystickGUID": "1900bb3e4b4800000011000000010000",
                     "StickAxisThresholdPercentage": 25,
@@ -271,9 +271,10 @@
                 }
             }
         },
+        "gOpenMenuBar": 1,
         "gOpenWindows": {
             "modalWindowEnabled": 1
-        }
+        },
 		"gDisableLOD": 0,
 		"gDisableDrawDistance": 0,
 		"gDisableKokiriDrawDistance": 0,
@@ -281,6 +282,7 @@
 		"gInternalResolution": 1.0,
 		"gInterpolationFPS": 60,
 		"gRememberSaveLocation": 0,
+        "gZFightingMode": 0
     },
     "ConfigVersion": 2,
     "Window": {
