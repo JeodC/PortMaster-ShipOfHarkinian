@@ -15,6 +15,7 @@ The port uses SDL controller mapping. However, the `Select/Back` button is confi
 Nintendo for the game  
 HarbourMasters for the native pc port  
 fpasteau for the initial build  
+Bluedawn007 for the cover art  
 Testers and Devs from the PortMaster Discord  
 
 
