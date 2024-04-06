@@ -278,6 +278,7 @@
 		"gDisableKokiriDrawDistance": 0,
 		"gInternalResolution": 1.0,
 		"gInterpolationFPS": 60,
+		"gRememberSaveLocation": 0,
     },
     "ConfigVersion": 2,
     "Window": {

@@ -50,7 +50,7 @@ apply_settings() {
     esac
 
 	# Define array of keys to extract
-	keys=("internalresolution" "interpolationfps" "authenticlogo" "disablelod" "disabledrawdistance" "disablekokiridrawdistance" "usecustomtextures")
+	keys=("internalresolution" "interpolationfps" "authenticlogo" "disablelod" "disabledrawdistance" "disablekokiridrawdistance" "usecustomtextures" "remembersavelocation")
 
 	# Iterate over keys and extract corresponding values from preset.ini
 	for key in "${keys[@]}"; do
@@ -67,6 +67,7 @@ apply_settings() {
         -e "s/gDisableKokiriDrawDistance\": [01]+,/gDisableKokiriDrawDistance\": $disablekokiridrawdistance,/" \
         -e "s/gInternalResolution\": [0-9]+(\.[0-9]+)?,/gInternalResolution\": $internalresolution,/" \
         -e "s/gInterpolationFPS\": [0-9]+,/gInterpolationFPS\": $interpolationfps,/" \
+		-e "s/gRememberSaveLocation\": [01]+,/gRememberSaveLocation\": $remembersavelocation,/" \
         shipofharkinian.json
     set +x  # Disable debugging output
 }
@@ -76,8 +77,7 @@ apply_settings > settings.log 2>&1  # Redirect output to settings.log
 
 # Run the game
 echo "Loading, please wait... (might take a while!)" > /dev/tty0
-$GPTOKEYB "soh.elf" -c "opt.gptk" & 
-SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+$GPTOKEYB "soh.elf" xbox360 & 
 ./soh.elf
 $ESUDO systemctl restart oga_events & 
 printf "\033c" >> /dev/tty1
