@@ -44,6 +44,9 @@ apply_settings() {
         enhanced)
             cp "presets/enhanced.json" "shipofharkinian.json"
             ;;
+        randomizer)
+            cp "presets/randomizer.json" "shipofharkinian.json"
+            ;;
         custom)
             ;;
         *)
@@ -52,7 +55,7 @@ apply_settings() {
     esac
 
 	# Define array of keys to extract
-	keys=("internalresolution" "interpolationfps" "authenticlogo" "disablelod" "disabledrawdistance" "disablekokiridrawdistance" "usecustomtextures" "remembersavelocation")
+	keys=("internalresolution" "interpolationfps" "authenticlogo" "disablelod" "disabledrawdistance" "disablekokiridrawdistance" "usecustomtextures" "remembersavelocation" "fileselectmoreinfo")
 
 	# Iterate over keys and extract corresponding values from preset.ini
 	for key in "${keys[@]}"; do
@@ -62,14 +65,15 @@ apply_settings() {
 
     # Modify shipofharkinian.json according to additional options
     sed -i -E \
-        -e "s/gAltAssets\": [01]+,/gAltAssets\": $usecustomtextures,/" \
-        -e "s/gAuthenticLogo\": [01],/gAuthenticLogo\": $authenticlogo,/" \
-        -e "s/gDisableLOD\": [01]+,/gDisableLOD\": $disablelod,/" \
-        -e "s/gDisableDrawDistance\": [01]+,/gDisableDrawDistance\": $disabledrawdistance,/" \
-        -e "s/gDisableKokiriDrawDistance\": [01]+,/gDisableKokiriDrawDistance\": $disablekokiridrawdistance,/" \
-        -e "s/gInternalResolution\": [0-9]+(\.[0-9]+)?,/gInternalResolution\": $internalresolution,/" \
-        -e "s/gInterpolationFPS\": [0-9]+,/gInterpolationFPS\": $interpolationfps,/" \
-	-e "s/gRememberSaveLocation\": [01]+,/gRememberSaveLocation\": $remembersavelocation,/" \
+		-e "s/gAltAssets\": [01]+,/gAltAssets\": $usecustomtextures,/" \
+		-e "s/gAuthenticLogo\": [01],/gAuthenticLogo\": $authenticlogo,/" \
+		-e "s/gDisableLOD\": [01]+,/gDisableLOD\": $disablelod,/" \
+		-e "s/gDisableDrawDistance\": [01]+,/gDisableDrawDistance\": $disabledrawdistance,/" \
+		-e "s/gDisableKokiriDrawDistance\": [01]+,/gDisableKokiriDrawDistance\": $disablekokiridrawdistance,/" \
+		-e "s/gFileSelectMoreInfo\": [01]+,/gFileSelectMoreInfo\": $fileselectmoreinfo,/" \
+		-e "s/gInternalResolution\": [0-9]+(\.[0-9]+)?,/gInternalResolution\": $internalresolution,/" \
+		-e "s/gInterpolationFPS\": [0-9]+,/gInterpolationFPS\": $interpolationfps,/" \
+		-e "s/gRememberSaveLocation\": [01]+,/gRememberSaveLocation\": $remembersavelocation,/" \
         shipofharkinian.json
     set +x  # Disable debugging output
 }

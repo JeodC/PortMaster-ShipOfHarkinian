@@ -308,6 +308,7 @@
 		"gFastOcarinaPlayback": 1,
 		"gFasterBlockPush": 5,
 		"gFasterHeavyBlockLift": 1,
+		"gFileSelectMoreInfo": 0,
 		"gFixDungeonMinimapIcon": 1,
 		"gForgeTime": 0,
 		"gGoronPot": 1,

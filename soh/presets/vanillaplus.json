@@ -296,6 +296,7 @@
 		"gFastDrops": 1,
 		"gFasterBlockPush": 5,
 		"gFixDungeonMinimapIcon": 1,
+		"gFileSelectMoreInfo": 0,
 		"gGravediggingTourFix": 1,
 		"gHoverFishing": 1,
 		"gImGuiScale": 2,
