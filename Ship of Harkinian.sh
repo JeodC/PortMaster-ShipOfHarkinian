@@ -29,9 +29,8 @@ cd $GAMEDIR
 $ESUDO chmod 666 /dev/tty1
 $ESUDO chmod 666 /dev/uinput
 
-# Function to apply settings from preset.ini to shipofharkinian.json
+# Apply config.ini settings
 apply_settings() {
-    set -x  # Enable debugging output
     # Check preset value and copy preset.json accordingly
     preset_value=$(grep -Po 'preset=\K\w+' config.ini)
     case $preset_value in
@@ -57,13 +56,13 @@ apply_settings() {
 	# Define array of keys to extract
 	keys=("internalresolution" "interpolationfps" "authenticlogo" "disablelod" "disabledrawdistance" "disablekokiridrawdistance" "usecustomtextures" "remembersavelocation" "fileselectmoreinfo")
 
-	# Iterate over keys and extract corresponding values from preset.ini
+	# Iterate over keys and extract corresponding values from config.ini
 	for key in "${keys[@]}"; do
 		value=$(grep -Po "${key}=\K[^;]+" config.ini)
 		declare "$key=$value"
 	done
 
-    # Modify shipofharkinian.json according to additional options
+    # Modify the copied shipofharkinian.json according to additional options
     sed -i -E \
 		-e "s/gAltAssets\": [01]+,/gAltAssets\": $usecustomtextures,/" \
 		-e "s/gAuthenticLogo\": [01],/gAuthenticLogo\": $authenticlogo,/" \
@@ -75,11 +74,21 @@ apply_settings() {
 		-e "s/gInterpolationFPS\": [0-9]+,/gInterpolationFPS\": $interpolationfps,/" \
 		-e "s/gRememberSaveLocation\": [01]+,/gRememberSaveLocation\": $remembersavelocation,/" \
         shipofharkinian.json
-    set +x  # Disable debugging output
 }
 
-# Call the function
-apply_settings > settings.log 2>&1  # Redirect output to settings.log
+apply_settings
+
+# Copy the right build to the main folder
+if [ $CFW_NAME == "ArkOS" ]; then
+	cp -f bin/compatibility.elf soh.elf
+	cp -f bin/compatibility.otr soh.otr
+	if [ "$(find "./mods" -name '*.otr')" ]; then
+		echo "WARNING: .OTR MODS FOUND! PERFORMANCE WILL BE LOW IF ENABLED!!" > /dev/tty0
+	fi
+else
+	cp -f bin/performance.elf soh.elf
+	cp -f bin/performance.otr soh.otr
+fi
 
 # Run the game
 echo "Loading, please wait... (might take a while!)" > /dev/tty0
