@@ -25,10 +25,6 @@ export LD_LIBRARY_PATH="$GAMEDIR/libs:/usr/lib"
 
 cd $GAMEDIR
 
-# Setup controls
-$ESUDO chmod 666 /dev/tty1
-$ESUDO chmod 666 /dev/uinput
-
 # Apply config.ini settings
 apply_settings() {
     # Check preset value and copy preset.json accordingly
