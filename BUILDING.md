@@ -2,7 +2,7 @@
 ## Install WSL and chroot
 1. 	Install wsl and ubuntu (use wsl2)
 2. 	`sudo apt update`
-3.	`sudo apt install -y apt-transport-https ca-certificates curl software-properties-common qemu-user-static`
+3.	`sudo apt install -y apt-transport-https ca-certificates curl software-properties-common qemu-user-static debootstrap`
 4.	`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
 5.	`sudo add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
 6.	`sudo apt install docker-ce -y`
@@ -13,7 +13,7 @@ Note: The folder `/mnt/data/arm64` can be modified, for example to `/mnt/data/bo
 
 ## Enter chroot and install dependencies
 1. 	`sudo chroot /mnt/data/arm64/`
-2.  `apt -y install gcc g++ git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev`
+2.  `apt -y install gcc g++ git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev libglew-dev`
 
 ## Build Shipwright (Develop)
 1.  `git clone https://github.com/HarbourMasters/Shipwright.git`
