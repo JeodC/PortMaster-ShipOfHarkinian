@@ -14,7 +14,9 @@ fi
 
 source $controlfolder/control.txt
 source $controlfolder/device_info.txt
+
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
+
 get_controls
 
 # Set variables
@@ -24,9 +26,14 @@ GAMEDIR="/$directory/ports/soh"
 export LD_LIBRARY_PATH="$GAMEDIR/libs:/usr/lib"
 
 # Permissions
-$ESUDO chmod 0777 /dev/tty0
+$ESUDO chmod 666 /dev/tty0
+$ESUDO chmod 666 /dev/tty1
 
 cd $GAMEDIR
+
+# Remove soh generated logs and substitute our own
+rm -rf $GAMEDIR/logs/*
+> "$GAMEDIR/logs/log.txt" && exec > >(tee "$GAMEDIR/logs/log.txt") 2>&1
 
 # Apply config.ini settings
 apply_settings() {
@@ -78,7 +85,7 @@ apply_settings() {
 apply_settings
 
 # Copy the right build to the main folder
-if [ $CFW_NAME == "ArkOS" ]; then
+if [ "$CFW_NAME" == 'ArkOS' ] || [ "$CFW_NAME" == 'ArkOS wuMMLe' ]; then
 	cp -f bin/compatibility.elf soh.elf
 	cp -f bin/compatibility.otr soh.otr
 	if [ "$(find "./mods" -name '*.otr')" ]; then
@@ -89,13 +96,13 @@ else
 	cp -f bin/performance.otr soh.otr
 fi
 
-# Remove soh generated logs and substitute our own
-rm -rf $GAMEDIR/logs/*
-
 # Run the game
 echo "Loading, please wait... (might take a while!)" > /dev/tty0
+
 $GPTOKEYB "soh.elf" -c "soh.gptk" & 
-./soh.elf 2>&1 | tee $GAMEDIR/logs/log.txt
+./soh.elf
+
+$ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events & 
-printf "\033c" >> /dev/tty1
+printf "\033c" > /dev/tty1
 printf "\033c" > /dev/tty0
