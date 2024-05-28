@@ -32,7 +32,7 @@ I prefer the OoT 3DS look along with a studio ghibli style skybox:
 Nintendo for the game  
 HarbourMasters for the native pc port  
 fpasteau for the initial build  
-BlueDawn007 for the cover art  
+AkerHasReawakened for the cover art  
 Testers and Devs from the PortMaster Discord  
 
 
