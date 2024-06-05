@@ -1,4 +1,5 @@
 # Building from source Ship of Harkinian
+
 ## Install WSL and chroot
 1. 	Install wsl and ubuntu (use wsl2)
 2. 	`sudo apt update`
