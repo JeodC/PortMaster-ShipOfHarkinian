@@ -32,68 +32,16 @@ $ESUDO chmod 666 /dev/tty1
 cd $GAMEDIR
 
 # Remove soh generated logs and substitute our own
-rm -rf $GAMEDIR/logs/*
-> "$GAMEDIR/logs/log.txt" && exec > >(tee "$GAMEDIR/logs/log.txt") 2>&1
-
-# Apply config.ini settings
-apply_settings() {
-    # Check preset value and copy preset.json accordingly
-    preset_value=$(grep -Po 'preset=\K\w+' config.ini)
-    case $preset_value in
-        default)
-            cp "presets/default.json" "shipofharkinian.json"
-            ;;
-        vanillaplus)
-            cp "presets/vanillaplus.json" "shipofharkinian.json"
-            ;;
-        enhanced)
-            cp "presets/enhanced.json" "shipofharkinian.json"
-            ;;
-        randomizer)
-            cp "presets/randomizer.json" "shipofharkinian.json"
-            ;;
-        custom)
-            ;;
-        *)
-            cp "presets/default.json" "shipofharkinian.json"
-            ;;
-    esac
-
-	# Define array of keys to extract
-	keys=("internalresolution" "interpolationfps" "authenticlogo" "disablelod" "disabledrawdistance" "disablekokiridrawdistance" "usecustomtextures" "remembersavelocation" "fileselectmoreinfo")
-
-	# Iterate over keys and extract corresponding values from config.ini
-	for key in "${keys[@]}"; do
-		value=$(grep -Po "${key}=\K[^;]+" config.ini)
-		declare "$key=$value"
-	done
-
-    # Modify the copied shipofharkinian.json according to additional options
-    sed -i -E \
-		-e "s/gAltAssets\": [01]+,/gAltAssets\": $usecustomtextures,/" \
-		-e "s/gAuthenticLogo\": [01],/gAuthenticLogo\": $authenticlogo,/" \
-		-e "s/gDisableLOD\": [01]+,/gDisableLOD\": $disablelod,/" \
-		-e "s/gDisableDrawDistance\": [01]+,/gDisableDrawDistance\": $disabledrawdistance,/" \
-		-e "s/gDisableKokiriDrawDistance\": [01]+,/gDisableKokiriDrawDistance\": $disablekokiridrawdistance,/" \
-		-e "s/gFileSelectMoreInfo\": [01]+,/gFileSelectMoreInfo\": $fileselectmoreinfo,/" \
-		-e "s/gInternalResolution\": [0-9]+(\.[0-9]+)?,/gInternalResolution\": $internalresolution,/" \
-		-e "s/gInterpolationFPS\": [0-9]+,/gInterpolationFPS\": $interpolationfps,/" \
-		-e "s/gRememberSaveLocation\": [01]+,/gRememberSaveLocation\": $remembersavelocation,/" \
-        shipofharkinian.json
-}
-
-apply_settings
+rm -rf $GAMEDIR/logs/* && exec > >(tee "$GAMEDIR/logs/log.txt") 2>&1
 
 # Copy the right build to the main folder
 if [ "$CFW_NAME" == 'ArkOS' ] || [ "$CFW_NAME" == 'ArkOS wuMMLe' ]; then
 	cp -f bin/compatibility.elf soh.elf
-	cp -f bin/compatibility.otr soh.otr
 	if [ "$(find "./mods" -name '*.otr')" ]; then
 		echo "WARNING: .OTR MODS FOUND! PERFORMANCE WILL BE LOW IF ENABLED!!" > /dev/tty0
 	fi
 else
 	cp -f bin/performance.elf soh.elf
-	cp -f bin/performance.otr soh.otr
 fi
 
 # Run the game
@@ -102,6 +50,8 @@ echo "Loading, please wait... (might take a while!)" > /dev/tty0
 $GPTOKEYB "soh.elf" -c "soh.gptk" & 
 ./soh.elf
 
+# Cleanup
+rm -rf "$GAMEDIR/logs/Ship of Harkinian.log"
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events & 
 printf "\033c" > /dev/tty1
