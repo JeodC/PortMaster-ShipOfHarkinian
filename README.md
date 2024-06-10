@@ -3,7 +3,7 @@ Ship of Harkinian binaries were built from the develop branch (bleeding edge) on
 
 ## Installation
 CAREFULLY follow the guide at the [Ship of Harkinian website](https://www.shipofharkinian.com/setup-guide) for your desired platform to create your oot.otr and/or oot-mq.otr files. Once created put in the `ports/soh` folder. Texture pack files can be added to the `ports/soh/mods` folder. 
-Logs are recorded automatically and kept in `/ports/soh/logs`. Please provide a log if you report an issue. PortMaster does not mantain the Ship of Harkinian repository and is not responsible for bugs or issues outside of our control.
+Logs are recorded automatically and kept in `/ports/soh/logs`. Please provide a log if you report an issue. PortMaster does not maintain the Ship of Harkinian repository and is not responsible for bugs or issues outside of our control.
 
 ## Menu Navigation
 There is a `soh.gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north button (X or Y), press R, then press the north button again to access the menu bar navigation.
