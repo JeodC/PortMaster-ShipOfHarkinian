@@ -1,5 +1,5 @@
 ## Information
-Ship of Harkinian binaries were built from the develop branch (bleeding edge) on 06/04/2024 by fpasteau. You can build your own by following the [BUILDING.md guide](BUILDING.md).
+Ship of Harkinian binaries were built from the develop branch (bleeding edge) on 07/18/2024. You can build your own by following the [BUILDING.md guide](BUILDING.md).
 
 ## Installation
 CAREFULLY follow the guide at the [Ship of Harkinian website](https://www.shipofharkinian.com/setup-guide) for your desired platform to create your oot.otr and/or oot-mq.otr files. Once created put in the `ports/soh` folder. Texture pack files can be added to the `ports/soh/mods` folder. 
