@@ -17,25 +17,28 @@ Note: The folder `/mnt/data/arm64` can be modified, for example to `/mnt/data/bo
 2.  `apt -y install gcc g++ git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev libglew-dev`
 
 ## Build Shipwright (Develop)
-1.  `git clone https://github.com/HarbourMasters/Shipwright.git`
-2.  `cd Shipwright`
-3.  `git submodule update --init`
-4.  `cmake -H. -B build-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release`
-5.  `cmake --build build-cmake --config Release --target GenerateSohOtr`
-6.  `cmake --build build-cmake --config Release -j$(nproc)`
+```
+git clone https://github.com/HarbourMasters/Shipwright.git
+cd Shipwright
+git submodule update --init
+cmake -H. -B build-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release
+cmake --build build-cmake --config Release --target GenerateSohOtr
+cmake --build build-cmake --config Release -j$(nproc)
+```
 
 ## Build Shipwright (Releases)
-1.  `git clone https://github.com/HarbourMasters/Shipwright.git`
-2.  `cd Shipwright`
-3.  `git checkout tags/8.0.5` -- Change this to whatever release tag you want to use
-4.  `git submodule update --init`
-5.  `cmake -H. -Bbuild-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release`
-6.  `cmake --build build-cmake --config Release --target GenerateSohOtr`
-7.  `cmake --build build-cmake --config Release -j$(nproc)`
+```
+git clone https://github.com/HarbourMasters/Shipwright.git
+cd Shipwright
+git checkout tags/x.x.x
+git submodule update --init
+cmake -H. -Bbuild-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release
+cmake --build build-cmake --config Release --target GenerateSohOtr
+cmake --build build-cmake --config Release -j$(nproc)
+```
 
 ## Retrieve the binaries
 1.  `cd build-cmake/soh`
 2.  `strip soh.elf`
 3.  `mv soh.elf performance.elf` -- Or compatibility.elf if you built on bullseye.
-4.  `mv soh.otr performance.otr` -- Or compatibility.otr if you built on bullseye.
-5.  Copy both files to `roms/ports/soh/bin/`
+4.  Copy the `.elf` to `roms/ports/soh/bin/` and copy `soh.otr` to `roms/ports/soh`.
