@@ -60,7 +60,7 @@ fi
 # Check if we need to generate any otr files
 if [ ! -f "oot.otr" ] || [ ! -f "oot-mq.otr" ]; then
     if ls *.*64 1> /dev/null 2>&1; then
-        echo "We need to generate a otr! Stand by..." > /dev/tty0
+        echo "We need to generate OTR files! Stand by...this will take a minute or two..." > /dev/tty0
         . /bin/otrgen.txt
     fi
 fi

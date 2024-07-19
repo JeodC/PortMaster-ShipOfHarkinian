@@ -2,11 +2,14 @@
 Ship of Harkinian binaries were built from the develop branch (bleeding edge) on 07/18/2024. You can build your own by following the [BUILDING.md guide](BUILDING.md).
 
 ## Installation
-CAREFULLY follow the guide at the [Ship of Harkinian website](https://www.shipofharkinian.com/setup-guide) for your desired platform to create your oot.otr and/or oot-mq.otr files. Once created put in the `ports/soh` folder. Texture pack files can be added to the `ports/soh/mods` folder. 
-Logs are recorded automatically and kept in `/ports/soh/logs`. Please provide a log if you report an issue. PortMaster does not maintain the Ship of Harkinian repository and is not responsible for bugs or issues outside of our control.
+You need to provide your own roms. See the [Shipwright](https://github.com/HarbourMasters/Shipwright/blob/8.0.5/docs/supportedHashes.json) repository for a list of supported rom hashes. Gather your roms and put them in the `ports/soh` folder. Start the port, and on first run, your .otr files will be generated from the roms you provide. Note that only one `oot.otr` and `oot-mq.otr` will be made--if you provide more than one rom per game, strange things may occur. You *can* use pregenerated `.otr` files from elsewhere, but you may experience crashes.
+
+Texture pack files and mods can be added to the `ports/soh/mods` folder. 
+
+Logs are recorded automatically as `ports/soh/log.txt`. Please provide a log if you report an issue. PortMaster does not maintain the Ship of Harkinian repository and is not responsible for bugs or issues outside of our control. Likewise, HarbourMasters is not affiliated with PortMaster and this distribution is not officially supported by them. *Please come to PortMaster for help before approaching the HarbourMasters!*
 
 ## Menu Navigation
-There is a `soh.gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north button (X or Y), press R, then press the north button again to access the menu bar navigation.
+There is a `soh.gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north button (X or Y), press R1, then press the north button again to access the menu bar navigation.
 
 ![menubar](https://github.com/JeodC/PortMaster-ShipOfHarkinian/assets/47716344/82b1de1d-11a9-49da-8500-61bc26902cbe)
 
