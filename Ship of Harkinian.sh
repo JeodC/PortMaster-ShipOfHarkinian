@@ -57,6 +57,14 @@ else
     cp -f "$GAMEDIR/bin/performance.elf" soh.elf
 fi
 
+# Check if we need to generate any otr files
+if [ ! -f "oot.otr" ] || [ ! -f "oot-mq.otr" ]; then
+    if ls *.*64 1> /dev/null 2>&1; then
+        echo "We need to generate a otr! Stand by..." > /dev/tty0
+        . /bin/otrgen.txt
+    fi
+fi
+
 # Run the game
 echo "Loading, please wait... (might take a while!)" > /dev/tty0
 
@@ -64,7 +72,7 @@ $GPTOKEYB "soh.elf" -c "soh.gptk" &
 ./soh.elf
 
 # Cleanup
-rm -rf "$GAMEDIR/logs/Ship of Harkinian.log"
+rm -rf "$GAMEDIR/logs/"
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events & 
 printf "\033c" > /dev/tty1
