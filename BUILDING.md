@@ -42,3 +42,4 @@ cmake --build build-cmake --config Release -j$(nproc)
 2.  `strip soh.elf`
 3.  `mv soh.elf performance.elf` -- Or compatibility.elf if you built on bullseye.
 4.  Copy the `.elf` to `roms/ports/soh/bin/` and copy `soh.otr` to `roms/ports/soh`.
+5.  Copy the `build-cmake/assets` folder to `ports/soh` and copy `build-cmake/ZAPD/ZAPD.out` to `ports/soh/assets/extractor`.
