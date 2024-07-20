@@ -25,13 +25,14 @@ I prefer the OoT 3DS look along with a studio ghibli style skybox:
 - [Djipi's 3DS Experience](https://gamebanana.com/mods/477979)
 - [3DS Adult & Young Link (just the models)](https://gamebanana.com/mods/475743)
 - [OOT3D Link Textures](https://gamebanana.com/mods/478711)
-- [Studio Ghibli Skybox](https://www.iansantosart.com/zeldaoot)
+- [Studio Ghibli Skybox](https://github.com/JeodC/PortMaster-ShipOfHarkinian/tree/main/external-mods/)
 
 ## Thanks
 Nintendo for the game  
 HarbourMasters for the native pc port  
 fpasteau for the initial build  
 AkerHasReawakened for the cover art  
+IanSantos for the ghibli skybox mod  
 Testers and Devs from the PortMaster Discord  
 
 
