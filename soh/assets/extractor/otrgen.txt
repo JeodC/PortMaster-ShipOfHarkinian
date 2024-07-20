@@ -1,12 +1,8 @@
 #!/bin/sh
 
-# Ensure GAMEDIR is set to a writable directory
-GAMEDIR="/path/to/writable/directory" # Update this path to a writable location
-
 # Function to handle a single ROM file
 process_rom() {
     local romfile=$1
-    echo "Processing ROM file: $romfile" | tee -a log.txt
 
     # Compute SHA-1 hash of the file
     ROMHASH=$(sha1sum -b "$romfile" | awk '{ print $1 }') || { echo "Error: Failed to compute SHA-1 hash" | tee -a log.txt; return 1; }
@@ -51,7 +47,7 @@ process_rom() {
 
     if [ ! -e "$GAMEDIR/$OTRNAME" ]; then
         echo "Generating $OTRNAME from $romfile..." | tee -a log.txt
-        ./bin/ZAPD.out ed -eh -i ./assets/extractor/xmls/$ROM -b ./$romfile -fl ./assets/extractor/filelists -o placeholder -osf placeholder -gsf 1 -rconf ./assets/extractor/Config_$ROM.xml -se OTR --otrfile "$OTRNAME" --portVer "8.0.5" > /dev/null
+        ./assets/extractor/ZAPD.out ed -eh -i ./assets/extractor/xmls/$ROM -b ./$romfile -fl ./assets/extractor/filelists -o placeholder -osf placeholder -gsf 1 -rconf ./assets/extractor/Config_$ROM.xml -se OTR --otrfile "$OTRNAME" --portVer "8.0.5" > /dev/null 2>&1
         if [ $? -eq 0 ]; then
             echo "Successfully generated $OTRNAME" > /dev/tty0
         else
@@ -63,7 +59,7 @@ process_rom() {
 
 # Count the number of ROM files
 rom_count=0
-for romfile in *.z64 *.v64 *.n64; do
+for romfile in *.*64; do
     if [ -f "$romfile" ]; then
         rom_count=$((rom_count + 1))
     fi
@@ -72,6 +68,7 @@ done
 sleep 1
 echo "Found $rom_count ROM files!" > /dev/tty0
 
+# Process them all
 counter=1
 for romfile in *.*64; do
     if [ -f "$romfile" ]; then
@@ -79,10 +76,8 @@ for romfile in *.*64; do
         mv "$romfile" "rom${counter}.z64"
         if [ $? -eq 0 ]; then
             process_rom "rom${counter}.z64"
-        else
-            echo "Error: Failed to move $romfile to $GAMEDIR/rom${counter}.z64" | tee -a log.txt
-        fi
         counter=$((counter + 1))
+        fi
     fi
 done
 
