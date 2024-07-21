@@ -9,7 +9,7 @@ Texture pack files and mods can be added to the `ports/soh/mods` folder.
 Logs are recorded automatically as `ports/soh/log.txt`. Please provide a log if you report an issue. PortMaster does not maintain the Ship of Harkinian repository and is not responsible for bugs or issues outside of our control. Likewise, HarbourMasters is not affiliated with PortMaster and this distribution is not officially supported by them. *Please come to PortMaster for help before approaching the HarbourMasters!*
 
 ## Menu Navigation
-There is a `soh.gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north button (X or Y), press R1, then press the north button again to access the menu bar navigation.
+There is a `soh.gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north or west button (X or Y -- one of them will cause a white hue to appear), press R1 while keeping that other button held, then release both buttons and press X or Y again to access the menu bar navigation.
 
 ![menubar](https://github.com/JeodC/PortMaster-ShipOfHarkinian/assets/47716344/82b1de1d-11a9-49da-8500-61bc26902cbe)
 
@@ -22,6 +22,15 @@ The port uses SDL controller mapping and controls can be remapped from the menu 
 You can find a ton of mods at [GameBanana](https://gamebanana.com/mods/games/16121?_aFilters%5BGeneric_Name%5D=contains%2C3ds&_sSort=Generic_MostDownloaded).  
 
 I prefer the OoT 3DS look along with a studio ghibli style skybox:
+<p float="left">
+<img src="https://github.com/user-attachments/assets/821bf5b1-2c0e-4326-8d9b-6cd02cdf83dd" width="320"/> 
+<img src="https://github.com/user-attachments/assets/009f80c6-99e4-4a85-94f4-a3c41ec3843d" width="320"/>
+</p>
+<p float="left">
+<img src="https://github.com/user-attachments/assets/ef71b2e4-32ce-46e6-8e5b-5c8af908b305" width="320"/> 
+<img src="https://github.com/user-attachments/assets/a391a341-922f-4637-a2af-03e32f59f38c" width="320"/>
+</p>
+
 - [Djipi's 3DS Experience](https://gamebanana.com/mods/477979)
 - [3DS Adult & Young Link (just the models)](https://gamebanana.com/mods/475743)
 - [OOT3D Link Textures](https://gamebanana.com/mods/478711)
