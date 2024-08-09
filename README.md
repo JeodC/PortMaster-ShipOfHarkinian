@@ -6,6 +6,8 @@ You need to provide your own roms. See the [Shipwright](https://github.com/Harbo
 
 Texture pack files and mods can be added to the `ports/soh/mods` folder. 
 
+If you want to import a save, run the port once, and it will create a `save` folder. Then add your savegame to `soh/save` or `soh/Save`.
+
 Logs are recorded automatically as `ports/soh/log.txt`. Please provide a log if you report an issue. PortMaster does not maintain the Ship of Harkinian repository and is not responsible for bugs or issues outside of our control. Likewise, HarbourMasters is not affiliated with PortMaster and this distribution is not officially supported by them. *Please come to PortMaster for help before approaching the HarbourMasters!*
 
 ## Menu Navigation
