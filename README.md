@@ -6,12 +6,10 @@ You need to provide your own roms. See the [Shipwright](https://github.com/Harbo
 
 Texture pack files and mods can be added to the `ports/soh/mods` folder. 
 
-If you want to import a save, run the port once, and it will create a `save` folder. Then add your savegame to `soh/save` or `soh/Save`.
-
 Logs are recorded automatically as `ports/soh/log.txt`. Please provide a log if you report an issue. PortMaster does not maintain the Ship of Harkinian repository and is not responsible for bugs or issues outside of our control. Likewise, HarbourMasters is not affiliated with PortMaster and this distribution is not officially supported by them. *Please come to PortMaster for help before approaching the HarbourMasters!*
 
 ## Menu Navigation
-There is a `soh.gptk` file you can use to change which button emulates F1 (default is L3). Once you do so, make the menu bar appear, hold the north or west button (X or Y -- one of them will cause a white hue to appear), press R1 while keeping that other button held, then release both buttons and press X or Y again to access the menu bar navigation.
+There is a `soh.gptk` file you can use to change which button emulates F1 (default is L3). Some devices have a special button called `guide` that makes for a good F1 mapping. Once you do so, make the menu bar appear, hold the north button (X or Y), press R, then press the north button again to access the menu bar navigation.
 
 ![menubar](https://github.com/JeodC/PortMaster-ShipOfHarkinian/assets/47716344/82b1de1d-11a9-49da-8500-61bc26902cbe)
 
