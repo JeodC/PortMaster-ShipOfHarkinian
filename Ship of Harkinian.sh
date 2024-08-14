@@ -23,10 +23,13 @@ GAMEDIR="/$directory/ports/soh"
 source $controlfolder/device_info.txt
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
-CUR_TTY="/dev/tty0"
 # Set current virtual screen
 if [ "$CFW_NAME" == "muOS" ]; then
   /opt/muos/extra/muxlog & CUR_TTY="/tmp/muxlog_info"
+else if [ "$CFW_NAME" == "TrimUI" ]; then
+  CUR_TTY="/dev/fd/1"
+else
+  CUR_TTY="/dev/tty0"
 fi
 
 # Exports
@@ -70,6 +73,13 @@ if [ ! -f "oot.otr" ] || [ ! -f "oot-mq.otr" ]; then
     if ls *.*64 1> /dev/null 2>&1; then
         echo "We need to generate OTR files! Stand by..." > $CUR_TTY
         ./assets/extractor/otrgen.txt
+        # Check if OTR files were generated
+        if [ ! -f "oot.otr" ] || [ ! -f "oot-mq.otr" ]; then
+            echo "Error: Failed to generate OTR files." > $CUR_TTY
+            exit 1
+        fi
+    else
+        echo "Missing ROM files!" > $CUR_TTY
     fi
 fi
 
