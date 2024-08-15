@@ -44,13 +44,14 @@ $ESUDO chmod 777 $GAMEDIR/assets/extractor/ZAPD.out
 cd $GAMEDIR
 
 # List of compatibility firmwares
-CFW_NAMES="ArkOS ArkOS wuMMLe ArkOS AeUX knulli TrimUI"
+CFW_NAMES="ArkOS|ArkOS wuMMLe|ArkOS AeUX|knulli|TrimUI"
 
 # Check if the current CFW name is in the list
 contains() {
     local value="$1"
-    shift
-    for item in "$@"; do
+    local item
+    IFS="|" # Use | as the delimiter
+    for item in $CFW_NAMES; do
         if [ "$item" = "$value" ]; then
             return 0
         fi
