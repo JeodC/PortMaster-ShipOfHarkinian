@@ -35,9 +35,8 @@ Note: You may need to build and install tinyxml2 from source
 
 ## Build Shipwright (Develop)
 ```
-git clone https://github.com/HarbourMasters/Shipwright.git
+git clone --recursive https://github.com/HarbourMasters/Shipwright.git
 cd Shipwright
-git submodule update --init
 cmake -H. -B build-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release
 cmake --build build-cmake --config Release --target GenerateSohOtr
 cmake --build build-cmake --config Release -j$(nproc)
@@ -45,10 +44,9 @@ cmake --build build-cmake --config Release -j$(nproc)
 
 ## Build Shipwright (Releases)
 ```
-git clone https://github.com/HarbourMasters/Shipwright.git
+git clone --recursive https://github.com/HarbourMasters/Shipwright.git
 cd Shipwright
 git checkout tags/x.x.x
-git submodule update --init
 cmake -H. -Bbuild-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release
 cmake --build build-cmake --config Release --target GenerateSohOtr
 cmake --build build-cmake --config Release -j$(nproc)
