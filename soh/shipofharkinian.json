@@ -13,7 +13,7 @@
         },
         "gSettings": {
             "ControlNav": 1,
-            "OpenMenuBar": 1,
+            "OpenMenuBar": 0,
             "OverlayFont": "Press Start 2P",
             "ZFightingMode": 0
         }
