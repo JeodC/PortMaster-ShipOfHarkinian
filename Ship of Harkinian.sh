@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
@@ -21,19 +21,19 @@ source $controlfolder/device_info.txt
 
 # Set variables
 GAMEDIR="/$directory/ports/soh"
-> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
-
-cd $GAMEDIR
 
 # Exports
 export LD_LIBRARY_PATH="$GAMEDIR/libs:/usr/lib":$LD_LIBRARY_PATH
 export SDL_GAMECONTROLLERCONFIG=$sdl_controllerconfig
+export PATCHER_FILE="$GAMEDIR/assets/extractor/otrgen"
+export PATCHER_GAME="$(basename "${0%.*}")" # This gets the current script filename without the extension
+export PATCHER_TIME="5 to 10 minutes"
 
-# Permissions
-$ESUDO chmod 666 /dev/tty0
-$ESUDO chmod 666 /dev/tty1
-$ESUDO chmod 777 $GAMEDIR/assets/extractor/otrgen.txt
-$ESUDO chmod 777 $GAMEDIR/assets/extractor/ZAPD.out
+# CD and set permissions
+cd $GAMEDIR
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
+$ESUDO chmod +x -R $GAMEDIR/*
+
 
 # List of compatibility firmwares
 CFW_NAMES="ArkOS:ArkOS wuMMLe:ArkOS AeUX:knulli:TrimUI"
@@ -68,23 +68,27 @@ else
     cp -f "$GAMEDIR/bin/performance.elf" "$GAMEDIR/soh.elf"
 fi
 
-# Check if we need to generate any otr files
 if [ ! -f "oot.otr" ] || [ ! -f "oot-mq.otr" ]; then
+    # Ensure we have a rom file before attempting to generate otr
     if ls *.*64 1> /dev/null 2>&1; then
-        echo "We need to generate OTR files! Stand by..." > $CUR_TTY
-        ./assets/extractor/otrgen.txt
-        # Check if OTR files were generated
-        if [ ! -f "oot.otr" ] || [ ! -f "oot-mq.otr" ]; then
-            echo "Error: Failed to generate OTR files." > $CUR_TTY
-            exit 1
+        if [ -f "$controlfolder/utils/patcher.txt" ]; then
+            source "$controlfolder/utils/patcher.txt"
+            $ESUDO kill -9 $(pidof gptokeyb)
+        else
+            echo "This port requires the latest version of PortMaster." > $CUR_TTY
         fi
     else
-        echo "Missing ROM files!" > $CUR_TTY
+        echo "Missing ROM files! Can't generate otr!"
     fi
 fi
 
+# Check if OTR files were generated
+if [ ! -f "oot.otr" ] && [ ! -f "oot-mq.otr" ]; then
+    echo "No otr files, can't run the game!"
+    exit 1
+fi
+
 # Run the game
-$ESUDO chmod 777 $GAMEDIR/soh.elf
 echo "Loading, please wait... (might take a while!)" > $CUR_TTY
 $GPTOKEYB "soh.elf" -c "soh.gptk" & 
 ./soh.elf
