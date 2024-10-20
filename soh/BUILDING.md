@@ -1,14 +1,17 @@
 # Building from source Ship of Harkinian
 
 ## Install WSL and chroot
-1. 	Install wsl and ubuntu (use wsl2)
-2. 	`sudo apt update`
-3.	`sudo apt install -y apt-transport-https ca-certificates curl software-properties-common qemu-user-static debootstrap`
-4.	`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
-5.	`sudo add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
-6.	`sudo apt install docker-ce -y`
-7.	`sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes`
-8.	`sudo qemu-debootstrap --arch arm64 bookworm /mnt/data/arm64 http://deb.debian.org/debian/` -- Use bullseye instead of bookworm if building compatibility.
+1. 	Install wsl and ubuntu (use wsl2):
+```
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common qemu-user-static debootstrap
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt install docker-ce -y
+sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+sudo qemu-debootstrap --arch arm64 bookworm /mnt/data/arm64 http://deb.debian.org/debian/
+```
+ -- Use bullseye instead of bookworm if building compatibility.
 
 Note: The folder `/mnt/data/arm64` can be modified, for example to `/mnt/data/bookworm-arm64`. This is useful if you like to maintain multiple chroots.
 
@@ -16,23 +19,23 @@ Note: The folder `/mnt/data/arm64` can be modified, for example to `/mnt/data/bo
 1. 	`sudo chroot /mnt/data/arm64/`
 2.  `apt -y install gcc g++ git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev libglew-dev`
 
-## Build Shipwright (Develop)
+## Bullseye and older (newer cmake)
 ```
-git clone https://github.com/HarbourMasters/Shipwright.git
-cd Shipwright
-git submodule update --init
-cmake -H. -B build-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release
-cmake --build build-cmake --config Release --target GenerateSohOtr
-cmake --build build-cmake --config Release -j$(nproc)
+wget https://github.com/Kitware/CMake/releases/download/v3.24.4/cmake-3.24.4-linux-aarch64.sh
+chmod +x cmake-3.24.4-linux-aarch64.sh
+./cmake-3.24.4-linux-aarch64.sh --prefix=/usr
+echo 'export PATH=/usr/cmake-3.24.4-linux-aarch64/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
 ```
 
-## Build Shipwright (Releases)
+Note: You may need to build and install tinyxml2 from source
+
+## Build Shipwright
 ```
-git clone https://github.com/HarbourMasters/Shipwright.git
-cd Shipwright
+git clone https://github.com/HarbourMasters/Shipwright.git && cd Shipwright
 git checkout tags/x.x.x
-git submodule update --init
-cmake -H. -Bbuild-cmake -GNinja -DUSE_OPENGLES=1 -DCMAKE_BUILD_TYPE:STRING=Release
+git submodule update --init --recursive
+cmake -H. -Bbuild-cmake -GNinja -DUSE_OPENGLES=1 -DBUILD_CROWD_CONTROL=0 -DCMAKE_BUILD_TYPE=Release
 cmake --build build-cmake --config Release --target GenerateSohOtr
 cmake --build build-cmake --config Release -j$(nproc)
 ```
