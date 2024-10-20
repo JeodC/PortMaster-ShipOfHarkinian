@@ -13,11 +13,8 @@ else
 fi
 
 source $controlfolder/control.txt
-get_controls
-
-# Source Device Info
-source $controlfolder/device_info.txt
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
+get_controls
 
 # Set variables
 GAMEDIR="/$directory/ports/soh"
@@ -36,9 +33,9 @@ $ESUDO chmod +x -R $GAMEDIR/*
 
 
 # List of compatibility firmwares
-CFW_NAMES="ArkOS:ArkOS wuMMLe:ArkOS AeUX:knulli:TrimUI"
+CFW_NAMES="ArkOS:ArkOS wuMMLe:ArkOS AeUX:TrimUI"
 
-# Check if the current CFW name is in the list
+# Check if the current CFW name is in the compatibility list
 contains() {
     local value="$CFW_NAME"
     local item
@@ -68,6 +65,12 @@ else
     cp -f "$GAMEDIR/bin/performance.elf" "$GAMEDIR/soh.elf"
 fi
 
+# If we're using a TrimUI then use the compatibility binary
+# Knulli is compatible with TrimUI as well as higher GLIBC devices so we must also check the device name here
+if [[ "$DEVICE_NAME" == *"TrimUI"* ]]; then
+    cp -f "$GAMEDIR/bin/compatibility.elf" "$GAMEDIR/soh.elf"
+fi
+
 if [ ! -f "oot.otr" ] || [ ! -f "oot-mq.otr" ]; then
     # Ensure we have a rom file before attempting to generate otr
     if ls *.*64 1> /dev/null 2>&1; then
@@ -91,11 +94,9 @@ fi
 # Run the game
 echo "Loading, please wait... (might take a while!)" > $CUR_TTY
 $GPTOKEYB "soh.elf" -c "soh.gptk" & 
+pm_platform_helper "soh.elf"
 ./soh.elf
 
 # Cleanup
 rm -rf "$GAMEDIR/logs/"
-$ESUDO kill -9 $(pidof gptokeyb)
-$ESUDO systemctl restart oga_events & 
-printf "\033c" > /dev/tty1
-printf "\033c" > /dev/tty0
+pm_finish
