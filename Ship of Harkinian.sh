@@ -31,6 +31,36 @@ cd $GAMEDIR
 > "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 $ESUDO chmod +x -R $GAMEDIR/*
 
+# Check imgui.ini and modify if needed
+input_file="imgui.ini"
+temp_file="imgui_temp.ini"
+skip_section=0
+# Loop through each line in the input file
+while IFS= read -r line; do
+    # Check if the line is a window header
+    if [[ "$line" =~ ^\[Window\]\[Main\ Game\] || "$line" =~ ^\[Window\]\[Main\ -\ Deck\] ]]; then
+        skip_section=1  # Set the flag to skip modifications for this section
+    elif [[ "$line" =~ ^\[Window\] ]]; then
+        skip_section=0  # Reset the flag for other windows
+    fi
+
+    # Modify Pos and Size only if the current section is not skipped
+    if [[ $skip_section -eq 0 ]]; then
+        if [[ "$line" =~ ^Pos=.* ]]; then
+            echo "Pos=30,30" >> "$temp_file"
+        elif [[ "$line" =~ ^Size=.* ]]; then
+            echo "Size=400,300" >> "$temp_file"
+        else
+            echo "$line" >> "$temp_file"
+        fi
+    else
+        # If skipping, write the line unchanged
+        echo "$line" >> "$temp_file"
+    fi
+done < "$input_file"
+
+# Replace the original file with the modified one
+mv "$temp_file" "$input_file"
 
 # List of compatibility firmwares
 CFW_NAMES="ArkOS:ArkOS wuMMLe:ArkOS AeUX:TrimUI"
