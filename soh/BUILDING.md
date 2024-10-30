@@ -1,7 +1,7 @@
 # Building from source Ship of Harkinian
 
 ## Install WSL and chroot
-1. 	Install wsl and ubuntu (use wsl2):
+1. 	Install wsl and ubuntu (use wsl2), and once installed and started:
 ```
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common qemu-user-static debootstrap
@@ -16,10 +16,12 @@ sudo qemu-debootstrap --arch arm64 bookworm /mnt/data/arm64 http://deb.debian.or
 Note: The folder `/mnt/data/arm64` can be modified, for example to `/mnt/data/bookworm-arm64`. This is useful if you like to maintain multiple chroots.
 
 ## Enter chroot and install dependencies
-1. 	`sudo chroot /mnt/data/arm64/`
-2.  `apt -y install gcc g++ git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev libglew-dev`
+```
+sudo chroot /mnt/data/arm64/
+apt -y install gcc g++ git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev libglew-dev
+```
 
-## Bullseye and older (newer cmake)
+### Bullseye and older (newer cmake)
 ```
 wget https://github.com/Kitware/CMake/releases/download/v3.24.4/cmake-3.24.4-linux-aarch64.sh
 chmod +x cmake-3.24.4-linux-aarch64.sh
@@ -39,11 +41,14 @@ cmake -H. -Bbuild-cmake -GNinja -DUSE_OPENGLES=1 -DBUILD_CROWD_CONTROL=0 -DCMAKE
 cmake --build build-cmake --config Release --target GenerateSohOtr
 cmake --build build-cmake --config Release -j$(nproc)
 ```
+Note: If building for anything using a GLIBC version older than GLIBC_2.36, use the `8.0.4` release tag. ASnything newer than that will have poor performance.
 
 ## Retrieve the binaries
-1.  `cd build-cmake/soh`
-2.  `strip soh.elf`
-3.  `mv soh.elf performance.elf` -- Or compatibility.elf if you built on bullseye.
-4.  Copy the `.elf` to `roms/ports/soh/bin/` and copy `soh.otr` to `roms/ports/soh`.
-5.  Copy the `build-cmake/assets` folder to `ports/soh` and copy `build-cmake/ZAPD/ZAPD.out` to `ports/soh/assets/extractor`.
-6.  If the build is a new version open `ports/soh/assets/extractor/otrgen.txt` and edit `--portVer` around Line 50.
+```
+cd build-cmake/soh
+strip soh.elf
+```
+
+- Copy the `.elf` to `roms/ports/soh/bin/` as `performance.elf` or `compatibility.elf` (if you used bullseye) and copy `soh.otr` to `roms/ports/soh`.
+- Copy the `build-cmake/assets` folder to `ports/soh` and copy `build-cmake/ZAPD/ZAPD.out` to `ports/soh/assets/extractor`.
+- If the build is a new version open `ports/soh/assets/extractor/otrgen` with a text editor and edit `--portVer` around Line 50 to match the release version you pulled.
