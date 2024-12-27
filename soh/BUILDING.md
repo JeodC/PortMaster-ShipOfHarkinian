@@ -33,6 +33,6 @@ cd build-cmake/soh
 strip soh.elf
 ```
 
-- Copy `soh.elf` and `soh.otr` to `roms/ports/soh/x.x.x/` where `x.x.x` matches the version you built.
-- Copy the `build-cmake/assets` folder to `ports/soh/x.x.x/` and copy `build-cmake/ZAPD/ZAPD.out` to `ports/soh/x.x.x/assets/extractor`.
-- If the build is a new version open `ports/soh/x.x.x/assets/extractor/otrgen` with a text editor and edit `--portVer` around Line 50 to match the release version you pulled.
+- Copy `soh.elf` and `soh.otr` to `roms/ports/soh`.
+- Copy the `build-cmake/assets` folder to `ports/soh` and copy `build-cmake/ZAPD/ZAPD.out` to `ports/soh/assets/`.
+- If the build is a new version open `ports/soh/assets/otrgen` with a text editor and edit `--portVer` around Line 50 to match the release version you pulled.
