@@ -19,7 +19,7 @@ There is a `soh.gptk` file you can use to change which button emulates F1 (defau
 The GUI may be too large or small. Navigate to `Settings->Graphics->IMGUI Menu Scale` to change it.
 
 ## Default Gameplay Controls
-The port uses SDL controller mapping and controls can be remapped from the menu bar.
+The port uses SDL controller mapping and controls can be remapped from the menu bar. For devices without a right analog stick, the gptk file allows for the `HOTKEY + ABXY` button combo to use the C-Buttons.
 
 ## Suggested Mods
 You can find a ton of mods at [GameBanana](https://gamebanana.com/mods/games/16121?_aFilters%5BGeneric_Name%5D=contains%2C3ds&_sSort=Generic_MostDownloaded).  
