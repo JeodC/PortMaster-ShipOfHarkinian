@@ -29,7 +29,8 @@ export PATCHER_TIME="5 to 10 minutes"
 # CD and set permissions
 cd $GAMEDIR
 > "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
-$ESUDO chmod +x -R $GAMEDIR/*
+$ESUDO chmod +xwr soh.elf
+$ESUDO chmod +xwr $PATCHER_FILE
 
 # -------------------- BEGIN FUNCTIONS --------------------
 
@@ -100,7 +101,7 @@ fi
 # Run the game
 pm_message "Loading, please wait... (might take a while!)"
 $GPTOKEYB "soh.elf" -c "soh.gptk" & 
-pm_platform_helper "soh.elf"
+pm_platform_helper "soh.elf" >/dev/null
 ./soh.elf
 
 # Cleanup
