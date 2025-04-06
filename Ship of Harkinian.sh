@@ -102,7 +102,6 @@ if [ -f "imgui.ini" ]; then
 fi
 
 # Run the game
-pm_message "Loading, please wait... (might take a while!)"
 $GPTOKEYB "soh.elf" -c "soh.gptk" & 
 pm_platform_helper "soh.elf" >/dev/null
 ./soh.elf
